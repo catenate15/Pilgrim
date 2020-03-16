@@ -1,0 +1,640 @@
+#-------------------------#
+# Adding data for: gibbs1cm3 #
+#-------------------------#
+# Gibbs free energy in hartree (ref: 1 molec/cc)
+start_gibbs1cm3 nd3_planar.001
+    100.00  -55.43350859
+    200.00  -55.45412421
+    300.00  -55.47524125
+end_gibbs1cm3
+
+start_gibbs1cm3 nd3_planar.msho
+    100.00  -55.43350859
+    200.00  -55.45412421
+    300.00  -55.47524125
+end_gibbs1cm3
+
+start_gibbs1cm3 nd3_pyram.001
+    100.00  -55.44909350
+    200.00  -55.46994698
+    300.00  -55.49130961
+end_gibbs1cm3
+
+start_gibbs1cm3 nd3_pyram.msho
+    100.00  -55.44909350
+    200.00  -55.46994698
+    300.00  -55.49130961
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_planar.001
+    100.00  -55.42521475
+    200.00  -55.44542380
+    300.00  -55.46613047
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_planar.msho
+    100.00  -55.42521475
+    200.00  -55.44542380
+    300.00  -55.46613047
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_pyram.001
+    100.00  -55.44006578
+    200.00  -55.46052169
+    300.00  -55.48147723
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_pyram.msho
+    100.00  -55.44006578
+    200.00  -55.46052169
+    300.00  -55.48147723
+end_gibbs1cm3
+
+#-------------------------#
+# Adding data for: gibbs1bar #
+#-------------------------#
+# Gibbs free energy in hartree (ref: 1 bar)
+start_gibbs1bar nd3_planar.001
+    100.00  -55.41902702
+    200.00  -55.42560008
+    300.00  -55.43284026
+end_gibbs1bar
+
+start_gibbs1bar nd3_planar.msho
+    100.00  -55.41902702
+    200.00  -55.42560008
+    300.00  -55.43284026
+end_gibbs1bar
+
+start_gibbs1bar nd3_pyram.001
+    100.00  -55.43461192
+    200.00  -55.44142284
+    300.00  -55.44890862
+end_gibbs1bar
+
+start_gibbs1bar nd3_pyram.msho
+    100.00  -55.43461192
+    200.00  -55.44142284
+    300.00  -55.44890862
+end_gibbs1bar
+
+start_gibbs1bar nh3_planar.001
+    100.00  -55.41073318
+    200.00  -55.41689967
+    300.00  -55.42372947
+end_gibbs1bar
+
+start_gibbs1bar nh3_planar.msho
+    100.00  -55.41073318
+    200.00  -55.41689967
+    300.00  -55.42372947
+end_gibbs1bar
+
+start_gibbs1bar nh3_pyram.001
+    100.00  -55.42558420
+    200.00  -55.43199756
+    300.00  -55.43907623
+end_gibbs1bar
+
+start_gibbs1bar nh3_pyram.msho
+    100.00  -55.42558420
+    200.00  -55.43199756
+    300.00  -55.43907623
+end_gibbs1bar
+
+#-------------------------#
+# Adding data for:    pfn #
+#-------------------------#
+# V0, V0+zpe and partition functions
+start_pfn nd3_planar.001
+   -55.43554651
+   -55.41421016
+    100.00  4.33035E+01
+    200.00  3.46509E+02
+    300.00  1.17487E+03
+end_pfn
+
+start_pfn nd3_planar.msho
+   -55.43554651
+   -55.41421016
+    100.00  4.33035E+01
+    200.00  3.46509E+02
+    300.00  1.17487E+03
+end_pfn
+
+start_pfn nd3_pyram.001
+   -55.45294604
+   -55.42955781
+    100.00  9.15989E+01
+    200.00  7.33665E+02
+    300.00  2.50869E+03
+end_pfn
+
+start_pfn nd3_pyram.msho
+   -55.45294604
+   -55.42955781
+    100.00  9.15989E+01
+    200.00  7.33665E+02
+    300.00  2.50869E+03
+end_pfn
+
+start_pfn nh3_planar.001
+   -55.43554651
+   -55.40632275
+    100.00  1.19990E+01
+    200.00  9.59932E+01
+    300.00  3.24150E+02
+end_pfn
+
+start_pfn nh3_planar.msho
+   -55.43554651
+   -55.40632275
+    100.00  1.19990E+01
+    200.00  9.59932E+01
+    300.00  3.24150E+02
+end_pfn
+
+start_pfn nh3_pyram.001
+   -55.45294604
+   -55.42092698
+    100.00  2.61577E+01
+    200.00  2.09287E+02
+    300.00  7.08241E+02
+end_pfn
+
+start_pfn nh3_pyram.msho
+   -55.45294604
+   -55.42092698
+    100.00  2.61577E+01
+    200.00  2.09287E+02
+    300.00  7.08241E+02
+end_pfn
+
+#-------------------------#
+# Adding data for:    ctr #
+#-------------------------#
+# transl, rovib and elec partition functions
+start_ctr nd3_planar
+    100.00  2.49934E+00  1.73259E+01  1.00000E+00
+    200.00  7.06921E+00  4.90166E+01  1.00000E+00
+    300.00  1.29870E+01  9.04652E+01  1.00000E+00
+end_ctr
+
+start_ctr nd3_planar.001
+    100.00  2.49934E+00  1.73259E+01  1.00000E+00
+    200.00  7.06921E+00  4.90166E+01  1.00000E+00
+    300.00  1.29870E+01  9.04652E+01  1.00000E+00
+end_ctr
+
+start_ctr nd3_pyram
+    100.00  2.49934E+00  3.66492E+01  1.00000E+00
+    200.00  7.06921E+00  1.03783E+02  1.00000E+00
+    300.00  1.29870E+01  1.93170E+02  1.00000E+00
+end_ctr
+
+start_ctr nd3_pyram.001
+    100.00  2.49934E+00  3.66492E+01  1.00000E+00
+    200.00  7.06921E+00  1.03783E+02  1.00000E+00
+    300.00  1.29870E+01  1.93170E+02  1.00000E+00
+end_ctr
+
+start_ctr nh3_planar
+    100.00  1.95656E+00  6.13271E+00  1.00000E+00
+    200.00  5.53400E+00  1.73461E+01  1.00000E+00
+    300.00  1.01666E+01  3.18838E+01  1.00000E+00
+end_ctr
+
+start_ctr nh3_planar.001
+    100.00  1.95656E+00  6.13271E+00  1.00000E+00
+    200.00  5.53400E+00  1.73461E+01  1.00000E+00
+    300.00  1.01666E+01  3.18838E+01  1.00000E+00
+end_ctr
+
+start_ctr nh3_pyram
+    100.00  1.95656E+00  1.33692E+01  1.00000E+00
+    200.00  5.53400E+00  3.78184E+01  1.00000E+00
+    300.00  1.01666E+01  6.96634E+01  1.00000E+00
+end_ctr
+
+start_ctr nh3_pyram.001
+    100.00  1.95656E+00  1.33692E+01  1.00000E+00
+    200.00  5.53400E+00  3.78184E+01  1.00000E+00
+    300.00  1.01666E+01  6.96634E+01  1.00000E+00
+end_ctr
+
+#-------------------------#
+# Adding data for:    anh #
+#-------------------------#
+# anharmonicity
+#-------------------------#
+# Adding data for:    zct #
+#-------------------------#
+# ZCT transmission coefficient
+start_zct nd3_planar.001
+    100.00  1.11497E+10
+    200.00  1.22918E+01
+    300.00  2.23135E+00
+end_zct
+
+start_zct nh3_planar.001
+    100.00  1.51358E+12
+    200.00  3.54589E+02
+    300.00  4.60920E+00
+end_zct
+
+#-------------------------#
+# Adding data for:    sct #
+#-------------------------#
+# SCT transmission coefficient
+start_sct nd3_planar.001
+    100.00  3.19808E+10
+    200.00  1.76681E+01
+    300.00  2.39056E+00
+end_sct
+
+start_sct nh3_planar.001
+    100.00  3.23357E+12
+    200.00  6.69543E+02
+    300.00  5.50714E+00
+end_sct
+
+#-------------------------#
+# Adding data for:    cvt #
+#-------------------------#
+# CVT coefficient
+start_cvt nd3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cvt
+
+start_cvt nh3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cvt
+
+#-------------------------#
+# Adding data for: cagtst #
+#-------------------------#
+# CAG/TST coefficient
+start_cagtst nd3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cagtst
+
+start_cagtst nh3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cagtst
+
+#-------------------------#
+# Adding data for: cagcvt #
+#-------------------------#
+# CAG/CVT coefficient
+start_cagcvt nd3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cagcvt
+
+start_cagcvt nh3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cagcvt
+
+#-------------------------#
+# Adding data for:    cfs #
+#-------------------------#
+# TST correction factors/coefficients
+start_cfs cvt.nd3inv
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cfs
+
+start_cfs cvt.nh3inv
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cfs
+
+start_cfs cvtsct.nd3inv
+    100.00  3.19808E+10
+    200.00  1.76681E+01
+    300.00  2.39056E+00
+end_cfs
+
+start_cfs cvtsct.nh3inv
+    100.00  3.23357E+12
+    200.00  6.69543E+02
+    300.00  5.50714E+00
+end_cfs
+
+start_cfs cvtzct.nd3inv
+    100.00  1.11497E+10
+    200.00  1.22918E+01
+    300.00  2.23135E+00
+end_cfs
+
+start_cfs cvtzct.nh3inv
+    100.00  1.51358E+12
+    200.00  3.54589E+02
+    300.00  4.60920E+00
+end_cfs
+
+start_cfs tstsct.nd3inv
+    100.00  3.19808E+10
+    200.00  1.76681E+01
+    300.00  2.39056E+00
+end_cfs
+
+start_cfs tstsct.nh3inv
+    100.00  3.23357E+12
+    200.00  6.69543E+02
+    300.00  5.50714E+00
+end_cfs
+
+start_cfs tstzct.nd3inv
+    100.00  1.11497E+10
+    200.00  1.22918E+01
+    300.00  2.23135E+00
+end_cfs
+
+start_cfs tstzct.nh3inv
+    100.00  1.51358E+12
+    200.00  3.54589E+02
+    300.00  4.60920E+00
+end_cfs
+
+#-------------------------#
+# Adding data for:  rcons #
+#-------------------------#
+# Rate constants (in au)
+start_rcons mpcvt.nd3inv.bw
+    100.00  2.13516E-26
+    200.00  1.42517E-15
+    300.00  6.82692E-12
+end_rcons
+
+start_rcons mpcvt.nd3inv.fw
+    100.00  2.13516E-26
+    200.00  1.42517E-15
+    300.00  6.82692E-12
+end_rcons
+
+start_rcons mpcvt.nh3inv.bw
+    100.00  2.16702E-25
+    200.00  4.47619E-15
+    300.00  1.45911E-11
+end_rcons
+
+start_rcons mpcvt.nh3inv.fw
+    100.00  2.16702E-25
+    200.00  4.47619E-15
+    300.00  1.45911E-11
+end_rcons
+
+start_rcons mpcvtsct.nd3inv.bw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mpcvtsct.nd3inv.fw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mpcvtsct.nh3inv.bw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mpcvtsct.nh3inv.fw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mpcvtzct.nd3inv.bw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mpcvtzct.nd3inv.fw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mpcvtzct.nh3inv.bw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mpcvtzct.nh3inv.fw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mptstsct.nd3inv.bw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mptstsct.nd3inv.fw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mptstsct.nh3inv.bw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mptstsct.nh3inv.fw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mptstzct.nd3inv.bw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mptstzct.nd3inv.fw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mptstzct.nh3inv.bw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mptstzct.nh3inv.fw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mscvt.nd3inv.bw
+    100.00  2.13516E-26
+    200.00  1.42517E-15
+    300.00  6.82692E-12
+end_rcons
+
+start_rcons mscvt.nd3inv.fw
+    100.00  2.13516E-26
+    200.00  1.42517E-15
+    300.00  6.82692E-12
+end_rcons
+
+start_rcons mscvt.nh3inv.bw
+    100.00  2.16702E-25
+    200.00  4.47619E-15
+    300.00  1.45911E-11
+end_rcons
+
+start_rcons mscvt.nh3inv.fw
+    100.00  2.16702E-25
+    200.00  4.47619E-15
+    300.00  1.45911E-11
+end_rcons
+
+start_rcons mscvtsct.nd3inv.bw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mscvtsct.nd3inv.fw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mscvtsct.nh3inv.bw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mscvtsct.nh3inv.fw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mscvtzct.nd3inv.bw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mscvtzct.nd3inv.fw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mscvtzct.nh3inv.bw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mscvtzct.nh3inv.fw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mststsct.nd3inv.bw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mststsct.nd3inv.fw
+    100.00  6.82840E-16
+    200.00  2.51800E-14
+    300.00  1.63202E-11
+end_rcons
+
+start_rcons mststsct.nh3inv.bw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mststsct.nh3inv.fw
+    100.00  7.00721E-13
+    200.00  2.99700E-12
+    300.00  8.03551E-11
+end_rcons
+
+start_rcons mststzct.nd3inv.bw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mststzct.nd3inv.fw
+    100.00  2.38064E-16
+    200.00  1.75179E-14
+    300.00  1.52333E-11
+end_rcons
+
+start_rcons mststzct.nh3inv.bw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons mststzct.nh3inv.fw
+    100.00  3.27996E-13
+    200.00  1.58721E-12
+    300.00  6.72532E-11
+end_rcons
+
+start_rcons tst.nd3inv.bw
+    100.00  2.13516E-26
+    200.00  1.42517E-15
+    300.00  6.82692E-12
+end_rcons
+
+start_rcons tst.nd3inv.fw
+    100.00  2.13516E-26
+    200.00  1.42517E-15
+    300.00  6.82692E-12
+end_rcons
+
+start_rcons tst.nh3inv.bw
+    100.00  2.16702E-25
+    200.00  4.47619E-15
+    300.00  1.45911E-11
+end_rcons
+
+start_rcons tst.nh3inv.fw
+    100.00  2.16702E-25
+    200.00  4.47619E-15
+    300.00  1.45911E-11
+end_rcons
+

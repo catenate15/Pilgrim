@@ -1,0 +1,153 @@
+#======================================#
+# INPUT FILE TEMPLATES FOR: ORCA       #
+#======================================#
+
+#-------------------------#
+# MEP POINT CALCULATIONS  #
+#-------------------------#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSA orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSA_iso1 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSA_iso2 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSA_iso3 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSB orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSB_iso1 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSB_iso2 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSB_iso3 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSC orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSC_iso1 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSC_iso2 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+#- - - - - - - - - - - - - -#
+start_meppoint TSC_iso3 orca
+%pal nprocs 1 end  
+! hf sto-3g TightSCF        
+[Pilgrim_gradhess]         
+* xyz 0 2
+[Pilgrim_geometry]         
+*
+
+end_meppoint
+#- - - - - - - - - - - - - -#
+
+

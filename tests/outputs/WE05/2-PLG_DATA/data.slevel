@@ -1,0 +1,344 @@
+#-------------------------#
+# Adding data for: gibbs1cm3 #
+#-------------------------#
+# Gibbs free energy in hartree (ref: 1 molec/cc)
+start_gibbs1cm3 nh3_planar.001
+    100.00  0.01477544
+    200.00  -0.00543361
+    300.00  -0.02614028
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_planar.msho
+    100.00  0.01477544
+    200.00  -0.00543361
+    300.00  -0.02614028
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_pyram.001
+    100.00  0.00787544
+    200.00  -0.01258047
+    300.00  -0.03353601
+end_gibbs1cm3
+
+start_gibbs1cm3 nh3_pyram.msho
+    100.00  0.00787544
+    200.00  -0.01258047
+    300.00  -0.03353601
+end_gibbs1cm3
+
+#-------------------------#
+# Adding data for: gibbs1bar #
+#-------------------------#
+# Gibbs free energy in hartree (ref: 1 bar)
+start_gibbs1bar nh3_planar.001
+    100.00  0.02925701
+    200.00  0.02309052
+    300.00  0.01626072
+end_gibbs1bar
+
+start_gibbs1bar nh3_planar.msho
+    100.00  0.02925701
+    200.00  0.02309052
+    300.00  0.01626072
+end_gibbs1bar
+
+start_gibbs1bar nh3_pyram.001
+    100.00  0.02235702
+    200.00  0.01594366
+    300.00  0.00886499
+end_gibbs1bar
+
+start_gibbs1bar nh3_pyram.msho
+    100.00  0.02235702
+    200.00  0.01594366
+    300.00  0.00886499
+end_gibbs1bar
+
+#-------------------------#
+# Adding data for:    pfn #
+#-------------------------#
+# V0, V0+zpe and partition functions
+start_pfn nh3_planar.001
+   0.00444368
+   0.03366744
+    100.00  1.19990E+01
+    200.00  9.59932E+01
+    300.00  3.24150E+02
+end_pfn
+
+start_pfn nh3_planar.msho
+   0.00444368
+   0.03366744
+    100.00  1.19990E+01
+    200.00  9.59932E+01
+    300.00  3.24150E+02
+end_pfn
+
+start_pfn nh3_pyram.001
+   -0.00500482
+   0.02701424
+    100.00  2.61577E+01
+    200.00  2.09287E+02
+    300.00  7.08241E+02
+end_pfn
+
+start_pfn nh3_pyram.msho
+   -0.00500482
+   0.02701424
+    100.00  2.61577E+01
+    200.00  2.09287E+02
+    300.00  7.08241E+02
+end_pfn
+
+#-------------------------#
+# Adding data for:    ctr #
+#-------------------------#
+# transl, rovib and elec partition functions
+start_ctr nh3_planar
+    100.00  1.95656E+00  6.13271E+00  1.00000E+00
+    200.00  5.53400E+00  1.73461E+01  1.00000E+00
+    300.00  1.01666E+01  3.18838E+01  1.00000E+00
+end_ctr
+
+start_ctr nh3_planar.001
+    100.00  1.95656E+00  6.13271E+00  1.00000E+00
+    200.00  5.53400E+00  1.73461E+01  1.00000E+00
+    300.00  1.01666E+01  3.18838E+01  1.00000E+00
+end_ctr
+
+start_ctr nh3_pyram
+    100.00  1.95656E+00  1.33692E+01  1.00000E+00
+    200.00  5.53400E+00  3.78184E+01  1.00000E+00
+    300.00  1.01666E+01  6.96634E+01  1.00000E+00
+end_ctr
+
+start_ctr nh3_pyram.001
+    100.00  1.95656E+00  1.33692E+01  1.00000E+00
+    200.00  5.53400E+00  3.78184E+01  1.00000E+00
+    300.00  1.01666E+01  6.96634E+01  1.00000E+00
+end_ctr
+
+#-------------------------#
+# Adding data for:    anh #
+#-------------------------#
+# anharmonicity
+#-------------------------#
+# Adding data for:    zct #
+#-------------------------#
+# ZCT transmission coefficient
+start_zct nh3_planar.001
+    100.00  6.82217E+04
+    200.00  1.16001E+01
+    300.00  2.54152E+00
+end_zct
+
+#-------------------------#
+# Adding data for:    sct #
+#-------------------------#
+# SCT transmission coefficient
+start_sct nh3_planar.001
+    100.00  1.00223E+05
+    200.00  1.41452E+01
+    300.00  2.74630E+00
+end_sct
+
+#-------------------------#
+# Adding data for:    cvt #
+#-------------------------#
+# CVT coefficient
+start_cvt nh3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cvt
+
+#-------------------------#
+# Adding data for: cagtst #
+#-------------------------#
+# CAG/TST coefficient
+start_cagtst nh3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cagtst
+
+#-------------------------#
+# Adding data for: cagcvt #
+#-------------------------#
+# CAG/CVT coefficient
+start_cagcvt nh3_planar.001
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cagcvt
+
+#-------------------------#
+# Adding data for:    cfs #
+#-------------------------#
+# TST correction factors/coefficients
+start_cfs cvt.nh3inv
+    100.00  1.00000E+00
+    200.00  1.00000E+00
+    300.00  1.00000E+00
+end_cfs
+
+start_cfs cvtsct.nh3inv
+    100.00  1.00223E+05
+    200.00  1.41452E+01
+    300.00  2.74630E+00
+end_cfs
+
+start_cfs cvtzct.nh3inv
+    100.00  6.82217E+04
+    200.00  1.16001E+01
+    300.00  2.54152E+00
+end_cfs
+
+start_cfs tstsct.nh3inv
+    100.00  1.00223E+05
+    200.00  1.41452E+01
+    300.00  2.74630E+00
+end_cfs
+
+start_cfs tstzct.nh3inv
+    100.00  6.82217E+04
+    200.00  1.16001E+01
+    300.00  2.54152E+00
+end_cfs
+
+#-------------------------#
+# Adding data for:  rcons #
+#-------------------------#
+# Rate constants (in au)
+start_rcons mpcvt.nh3inv.bw
+    100.00  1.73717E-14
+    200.00  1.26735E-09
+    300.00  6.29140E-08
+end_rcons
+
+start_rcons mpcvt.nh3inv.fw
+    100.00  1.73717E-14
+    200.00  1.26735E-09
+    300.00  6.29140E-08
+end_rcons
+
+start_rcons mpcvtsct.nh3inv.bw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mpcvtsct.nh3inv.fw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mpcvtzct.nh3inv.bw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mpcvtzct.nh3inv.fw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mptstsct.nh3inv.bw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mptstsct.nh3inv.fw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mptstzct.nh3inv.bw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mptstzct.nh3inv.fw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mscvt.nh3inv.bw
+    100.00  1.73717E-14
+    200.00  1.26735E-09
+    300.00  6.29140E-08
+end_rcons
+
+start_rcons mscvt.nh3inv.fw
+    100.00  1.73717E-14
+    200.00  1.26735E-09
+    300.00  6.29140E-08
+end_rcons
+
+start_rcons mscvtsct.nh3inv.bw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mscvtsct.nh3inv.fw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mscvtzct.nh3inv.bw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mscvtzct.nh3inv.fw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mststsct.nh3inv.bw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mststsct.nh3inv.fw
+    100.00  1.74104E-09
+    200.00  1.79270E-08
+    300.00  1.72781E-07
+end_rcons
+
+start_rcons mststzct.nh3inv.bw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons mststzct.nh3inv.fw
+    100.00  1.18513E-09
+    200.00  1.47014E-08
+    300.00  1.59897E-07
+end_rcons
+
+start_rcons tst.nh3inv.bw
+    100.00  1.73717E-14
+    200.00  1.26735E-09
+    300.00  6.29140E-08
+end_rcons
+
+start_rcons tst.nh3inv.fw
+    100.00  1.73717E-14
+    200.00  1.26735E-09
+    300.00  6.29140E-08
+end_rcons
+
