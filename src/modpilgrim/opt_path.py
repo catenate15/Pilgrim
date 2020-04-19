@@ -4,7 +4,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -32,7 +32,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 *----------------------------------*
 | Module     :  modpilgrim         |
 | Sub-module :  opt_path           |
-| Last Update:  2020/03/01 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 '''
@@ -568,6 +568,8 @@ def obtain_sct(dMols,points,VadiSpl,temps,dv1,pathvars,dcfs={}):
     if len(temps) == 0: raise Exc.NoTemps(Exception)
     if useics in ["yes",True]: case = "ic"
     else                     : case = "cc"
+    # MEP LIMITS
+    sbw,sfw = VadiSpl.get_alpha()[0],VadiSpl.get_omega()[0]
     # Part I - Get E0 and VAG
     E0      = sct.get_sct_part1(points,VadiSpl,E0)
     sAG,VAG = VadiSpl.get_max()
@@ -584,37 +586,21 @@ def obtain_sct(dMols,points,VadiSpl,temps,dv1,pathvars,dcfs={}):
        fncs.print_string(PS.ssct_E0VAG(E0,VAG),8)
        if pathvars._qrc is not None:
           afreq   = pathvars._qrcafreq
-          lEquant = pathvars._qrclE
-          fncs.print_string("Quantum reaction coordinate keyword (qrc) activated!",8)
-          print("")
-          mode  = pathvars._qrc[0]+1
-          numst = pathvars._qrc[1]
-          # QRC failed!
-          if pathvars._caseqrc == 1: error = "No reaction related to the transition state!"
-          if pathvars._caseqrc == 2: error = "The reaction is not unimolecular!"
-          if pathvars._caseqrc == 3: error = "Reactant not defined!"
-          if pathvars._caseqrc == 4: error = "gts file for reactant not found"
-          if pathvars._caseqrc != 0:
-             fncs.print_string("ERROR: %s"%error,11)
-             return dcfs, None, E0, VAG
-          fncs.print_string("* reactant mode     : %i (%.2f cm^-1)"%(mode,fncs.afreq2cm(afreq)),11)
-          fncs.print_string("* number of states  : %i"%numst,11)
-          fncs.print_string("* contribution to Kappa^SAG from E0 to VAG will",11)
-          fncs.print_string("  be obtained from discrete set of energies",11)
-          print("")
-          fncs.print_string("* calculating transmission probabilities...",11)
-          print("")
+          lEquant = [E0+E_i for E_i in pathvars._qrclE]
+          fncs.print_string(PS.ssct_qrc(pathvars),8)
+          if pathvars._qrccase != 0: return dcfs, None, E0, VAG
           qrc_ZCT = sct.get_sct_part3(svals, mu   ,VadiSpl,afreq,lEquant,E0,VAG,temps)
           qrc_SCT = sct.get_sct_part3(svals,lmueff,VadiSpl,afreq,lEquant,E0,VAG,temps)
-          nE = len(qrc_SCT[1])
-          fncs.print_string(PS.ssct_probs(qrc_SCT[1],qrc_ZCT[2],qrc_SCT[2],qrc_SCT[3]),12)
-          fncs.print_string("* number of included states  : %i"%nE,11)
-          print("")
+          fncs.print_string(PS.ssct_probs(qrc_SCT[1],qrc_ZCT[2],qrc_SCT[2],qrc_SCT[3],sbw,sfw),12)
           kappaI1_zct = qrc_ZCT[0]
           kappaI1_sct = qrc_SCT[0]
+          qrc_Elim = lEquant[1]
        else:
           kappaI1_zct = None
           kappaI1_sct = None
+          qrc_Elim    = None
+       # apply QRC always?
+       if not pathvars._qrcauto: qrc_Elim = None
        # Part IV - calculate thetas and probs
        fncs.print_string("Transmission probabilities for Kappa^SAG calculation:",8)
        print("")
@@ -626,15 +612,15 @@ def obtain_sct(dMols,points,VadiSpl,temps,dv1,pathvars,dcfs={}):
        fncs.print_string(PS.ssct_probs(         [E0]+lE_SCT   ,\
                                        [pZCT0 ]+probs_ZCT,\
                                        [pSCT0 ]+probs_SCT,\
-                                       [rpSCT0]+rpoints_SCT),8)
+                                       [rpSCT0]+rpoints_SCT,sbw,sfw),8)
        fncs.print_string(PS.ssct_diffs(lE_SCT,diffs_SCT),8)
        # Part V - calculate coefficients
-       ZCTdata = sct.get_sct_part5(lE_ZCT,probs_ZCT,weights_ZCT,E0,VAG,temps,kappaI1_zct)
-       SCTdata = sct.get_sct_part5(lE_SCT,probs_SCT,weights_SCT,E0,VAG,temps,kappaI1_sct)
-       ZCT,lIi_ZCT, RTE_ZCT, INTG_ZCT = ZCTdata
-       SCT,lIi_SCT, RTE_SCT, INTG_SCT = SCTdata
-       fncs.print_string(PS.ssct_kappa(temps,ZCT,lIi_ZCT,RTE_ZCT,E0,case="zct"),8)
-       fncs.print_string(PS.ssct_kappa(temps,SCT,lIi_SCT,RTE_SCT,E0,case="sct"),8)
+       ZCTdata = sct.get_sct_part5(lE_ZCT,probs_ZCT,weights_ZCT,E0,VAG,temps,kappaI1_zct,qrc_Elim)
+       SCTdata = sct.get_sct_part5(lE_SCT,probs_SCT,weights_SCT,E0,VAG,temps,kappaI1_sct,qrc_Elim)
+       ZCT,lIi_ZCT, RTE_ZCT, INTG_ZCT, bqrcZCT = ZCTdata
+       SCT,lIi_SCT, RTE_SCT, INTG_SCT, bqrcSCT = SCTdata
+       fncs.print_string(PS.ssct_kappa(temps,ZCT,lIi_ZCT,RTE_ZCT,E0,bqrcZCT,case="zct"),8)
+       fncs.print_string(PS.ssct_kappa(temps,SCT,lIi_SCT,RTE_SCT,E0,bqrcSCT,case="sct"),8)
     #----------#
     # E0 > VAG #
     #----------#

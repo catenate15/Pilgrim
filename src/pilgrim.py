@@ -5,7 +5,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -32,7 +32,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 *----------------------------------*
 | Program    :  pilgrim            |
-| Last Update:  2020/02/28 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 '''

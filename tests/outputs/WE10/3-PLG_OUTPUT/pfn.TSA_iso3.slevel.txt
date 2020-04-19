@@ -1,13 +1,13 @@
  -------------------------------------------------------------
-  Program version: Pilgrim v2020.1 (2020-03-01)
+  Program version: Pilgrim v2020.2 (2020-04-18)
  -------------------------------------------------------------
                                                             
           A Thermal Rate Constant Calculator and            
               Kinetics Monte Carlo Simulator                
                                                             
  -------------------------------------------------------------
-  Current date (YY-MM-DD)   : 2020-03-12
-  Current time (HH:MM:SS)   : 16:02:50
+  Current date (YY-MM-DD)   : 2020-04-19
+  Current time (HH:MM:SS)   : 14:03:47
   Python interpreter version: 3.6.9
  -------------------------------------------------------------
 
@@ -127,8 +127,6 @@
         |   V : volume per molecule
         |   p0: 1bar
         | 
-        | file 5-MOLDEN/sp.TSA_iso3.001.molden was generated
-   
    
        ------------------
        Conformation: 002
@@ -216,8 +214,6 @@
         |   V : volume per molecule
         |   p0: 1bar
         | 
-        | file 5-MOLDEN/sp.TSA_iso3.002.molden was generated
-   
    
        ------------------
        Conformation: 003
@@ -305,8 +301,6 @@
         |   V : volume per molecule
         |   p0: 1bar
         | 
-        | file 5-MOLDEN/sp.TSA_iso3.003.molden was generated
-   
    
    
        Total multi-structural HO pfn (QMS_HO) and Gibbs free energies (GFE):
@@ -398,7 +392,7 @@
        
        
                                                             ----------------------------
-                                                            | Current date: 2020-03-12 |
-                                                            | Current time:   16:02:51 |
-                                                            | Elapsed time:   1.8 secs |
+                                                            | Current date: 2020-04-19 |
+                                                            | Current time:   14:03:49 |
+                                                            | Elapsed time:   2.1 secs |
                                                             ----------------------------

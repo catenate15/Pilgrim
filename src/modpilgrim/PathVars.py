@@ -4,7 +4,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -32,7 +32,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 *----------------------------------*
 | Module     :  modpilgrim         |
 | Sub-module :  PathVars           |
-| Last Update:  2020/03/01 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 '''
@@ -48,7 +48,7 @@ from   common.fncs       import afreq2zpe
 from   common.fncs       import cm2afreq
 from   common.fncs       import do_parallel
 from   common.Molecule   import Molecule
-from   common.criteria   import EPS_MEPINCR
+from   common.criteria   import EPS_MEPINCR, EPS_KCALMOL
 import common.Exceptions as Exc
 #---------------------------------------------------------------#
 
@@ -240,13 +240,17 @@ class PathVars():
          self._spec    = {}
 
          self._reaction  = None
+         self._reactioneq= None
+         self._exorgic   = True
          self._V1R       = None
          self._V1P       = None
          self._GibbsR    = None
          self._beyondmep = True
          self._qrclE     = []
          self._qrcafreq  = None
-         self._caseqrc   = 0
+         self._qrcauto   = True
+         self._qrcname   = None
+         self._qrccase   = 0
 
       def converged_in_bw(self,sbw):
           self._convbw = True
@@ -315,11 +319,12 @@ class PathVars():
                self._muintrpl = "default"
           elif var == "qrc":
                nnn = len(value.split())
-               if   nnn == 0: mode,num = "1","1000"
-               elif nnn == 1: mode,num = value.split()[0],"1000"
-               elif nnn == 2: mode,num = value.split()
-               else         : mode,num = "1","1000"
-               #except: mode, num = "1","1000"
+               mode,num,auto = "1","1000","auto"
+               if nnn == 1: mode          = value.split()[0]
+               if nnn == 2: mode,num      = value.split()
+               if nnn == 3: mode,num,auto = value.split()
+               if auto == "always": self._qrcauto = False
+               else               : self._qrcauto = True
                self._qrc = (int(mode)-1,int(num))
           elif var == "onioml":
                self._onioml = list_of_atoms(value)
@@ -499,7 +504,7 @@ class PathVars():
           if self._e0       not in ["default","auto"]: string += "  e0       %.6f\n"%self._e0
 
           if self._muintrpl not in ["default","auto"]: string += "  muintrpl %s  %i\n"%self._muintrpl
-          if self._qrc      not in ["default","auto"]: string += "  qrc      %i  %i\n"%(self._qrc[0]+1,self._qrc[1])
+          if self._qrc      not in ["default","auto"]: string += "  qrc      %i  %i  %s\n"%(self._qrc[0]+1,self._qrc[1],"auto" if self._qrcauto else "always")
           if self._lowfq    not in ["default","auto"]:
              for direc in self._lowfq.keys():
                  for mode,freq in self._lowfq[direc].items():
@@ -536,6 +541,7 @@ class PathVars():
           rname, V0R, V0P, V1R, V1P, GibbsR = get_reaction_energies(tsname,dchem,dof)
           self._V1R = V1R
           self._V1P = V1P
+          if None not in (self._V1R,self._V1P) and self._V1P > self._V1R: self._exorgic = False
           # save GibbsR for CVT gibbs
           self._GibbsR = GibbsR
           # go case by case
@@ -543,6 +549,11 @@ class PathVars():
           # save reaction name and check if beyond mep
           self._reaction = rname
           if self._eref in [None,"auto","default"]: self._beyondmep = False
+          try:
+              Rs,TS,Ps = dchem[self._reaction]
+              self._reactioneq = '%s --> %s --> %s'%("+".join(Rs),TS,"+".join(Ps))
+          except: self._reactioneq = None
+
 
       def get_layers(self):
           return (self._oniomh,self._oniomm,self._onioml)
@@ -556,49 +567,56 @@ class PathVars():
 
       def prepare_qrc(self,dchem,dctc,dimasses):
           '''
-          also modifies self._caseqrc:
-              self._caseqrc == 0: everything is ok / qrc is not activated
-              self._caseqrc == 1: no reaction is associated to the TS
-              self._caseqrc == 2: reaction is not unimolecular
-              self._caseqrc == 3: ctc for reactant not defined
-              self._caseqrc == 4: gts file for reactant not found
+          also modifies self._qrccase:
+              self._qrccase == 0: everything is ok / qrc is not activated
+              self._qrccase == 1: no reaction is associated to the TS
+              self._qrccase == 2: reaction is not unimolecular
+              self._qrccase == 3: ctc for reactant not defined
+              self._qrccase == 4: gts file for reactant not found
+              self._qrccase == 5: unable to get energy of products
           '''
+
           # Will qrc be used?
           if self._qrc      is None: return
-          if self._reaction is None: self._caseqrc = 1; return
+          if self._reaction is None: self._qrccase = 1; return
+          # assert unimolecular
           reactants = dchem[self._reaction][0]
-          if len(reactants) != 1: self._caseqrc = 2; return
-          # generate Molecule instance
-          reactant = reactants[0]
-          ctc, itc = PN.name2data(reactant)
-          if ctc not in dctc.keys(): self._caseqrc = 3; return
+          products  = dchem[self._reaction][2]
+          if self._exorgic:
+             if len(reactants) != 1: self._qrccase = 2; return
+             self._qrcname = reactants[0]
+          else:
+             if len(products ) != 1: self._qrccase = 2; return
+             self._qrcname = products[0]
+          if self._V1P is None: self._qrccase = 5; return
+          #---------------------------------#
+          # Now, generate Molecule instance #
+          #---------------------------------#
+          ctc, itc = PN.name2data(self._qrcname)
+          if ctc not in dctc.keys(): self._qrccase = 3; return
           cluster = dctc[ctc]
           if itc is None: itc = cluster._itcs[0][0]
           if   itc in cluster._diso.keys(): imods = cluster._diso[itc]
           elif "*" in cluster._diso.keys(): imods = cluster._diso["*"]
           else                            : imods = None
-          gtsfile = PN.get_gts(ctc,itc)
-          if not os.path.exists(gtsfile): self._caseqrc = 4; return
+          gtsfile = dctc[ctc].gtsfile(itc)
+          if not os.path.exists(gtsfile): self._qrccase = 4; return
           # Generate Molecule instance
-          reactant = Molecule()
-          reactant.set_from_gts(gtsfile)
+          molecule = Molecule()
+          molecule.set_from_gts(gtsfile)
           # apply fscal
-          reactant.setvar(fscal=cluster._fscal)
+          molecule.setvar(fscal=cluster._fscal)
           # apply isotopic masses
           if imods is not None:
-             reactant.apply_imods(imods,dimasses)
+             molecule.apply_imods(imods,dimasses)
           # calculate frequencies
-          reactant.setup()
-          mode, nE = self._qrc
-          Vadi = reactant._V0
-          for idx,afreq in enumerate(reactant._ccfreqs):
-              if idx == mode: continue
-              Vadi += afreq2zpe(afreq)
-          afreq = reactant._ccfreqs[mode]
-          listE = [Vadi+(n+0.5)*HBAR*afreq-self._eref for n in range(nE)]
-          self._qrclE    = listE
-          self._qrcafreq = afreq
-          return 0
+          molecule.setup()
+          #------------------------------#
+          # Prepare list of QRC energies #
+          #------------------------------#
+          mode , nE      = self._qrc
+          self._qrcafreq = molecule._ccfreqs[mode]
+          self._qrclE    = [n*HBAR*self._qrcafreq for n in range(nE)]
 
       def sct_convergence(self):
           if self._sct == "no"   : return False
@@ -611,11 +629,12 @@ class PathVars():
           hsteps   = self._hsteps
           dV0      = (V0fw-V0bw)*KCALMOL
           # Decide where to increase
-          if   self._V1R > V1fw       : increase = "-"
-          elif self._V1P is None      : increase = "+-"
-          elif dV0 > +abs(EPS_MEPINCR): increase = "+"
-          elif dV0 < -abs(EPS_MEPINCR): increase = "-"
-          else                        : increase = "+-"
+          if abs(dV0) < EPS_KCALMOL     : increase = "+-"
+          elif self._V1R > V1fw         : increase = "-"
+          elif self._V1P is None        : increase = "+-"
+          elif dV0 > +abs(EPS_MEPINCR)  : increase = "+"
+          elif dV0 < -abs(EPS_MEPINCR)  : increase = "-"
+          else                          : increase = "+-"
           # Modify MEP limits
           if "-" in increase and not self._convbw: self._sbw -= ds*hsteps
           if "+" in increase and not self._convfw: self._sfw += ds*hsteps

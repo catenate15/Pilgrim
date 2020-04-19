@@ -1,13 +1,13 @@
  -------------------------------------------------------------
-  Program version: Pilgrim v2020.1 (2020-03-01)
+  Program version: Pilgrim v2020.2 (2020-04-18)
  -------------------------------------------------------------
                                                             
           A Thermal Rate Constant Calculator and            
               Kinetics Monte Carlo Simulator                
                                                             
  -------------------------------------------------------------
-  Current date (YY-MM-DD)   : 2020-03-13
-  Current time (HH:MM:SS)   : 11:10:00
+  Current date (YY-MM-DD)   : 2020-04-19
+  Current time (HH:MM:SS)   : 11:58:54
   Python interpreter version: 3.6.9
  -------------------------------------------------------------
 
@@ -105,8 +105,6 @@
         |   V : volume per molecule
         |   p0: 1bar
         | 
-        | file 5-MOLDEN/sp.CH3CH2OD.001.molden was generated
-   
    
        ------------------
        Conformation: 002
@@ -173,8 +171,6 @@
         |   V : volume per molecule
         |   p0: 1bar
         | 
-        | file 5-MOLDEN/sp.CH3CH2OD.002.molden was generated
-   
    
    
        Total multi-structural HO pfn (QMS_HO) and Gibbs free energies (GFE):
@@ -194,7 +190,7 @@
              
    
                                                             ----------------------------
-                                                            | Current date: 2020-03-13 |
-                                                            | Current time:   11:10:00 |
-                                                            | Elapsed time: 51.8 msecs |
+                                                            | Current date: 2020-04-19 |
+                                                            | Current time:   11:58:54 |
+                                                            | Elapsed time: 52.7 msecs |
                                                             ----------------------------

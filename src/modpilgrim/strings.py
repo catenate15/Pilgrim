@@ -4,7 +4,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -32,7 +32,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 *----------------------------------*
 | Module     :  modpilgrim         |
 | Sub-module :  strings            |
-| Last Update:  2020/03/01 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 '''
@@ -58,7 +58,7 @@ from   common.physcons   import KCALMOL
 from   common.physcons   import ML
 from   common.physcons   import PRE0, VOL0
 from   common.physcons   import SECOND
-from   common.criteria   import EPS_AMU
+from   common.criteria   import EPS_AMU, EPS_MEPS
 from   common.fit2anarc  import activation1, activation2, activation3, activation4, activation5
 #---------------------------------------------------------------#
 
@@ -101,7 +101,7 @@ PROGNAME += "                        \/      \/        \/             \/  \n"
 PROGNAME += "\n"
 
 
-VERSION   = "2020.1 (2020-03-01)"
+VERSION   = "2020.2 (2020-04-18)"
 
 PROGHEAD  = " -------------------------------------------------------------\n"
 PROGHEAD += "  Program version: Pilgrim v%s\n"%VERSION
@@ -759,7 +759,7 @@ def ssct_E0_above_VAG(E0,VAG):
     string += "   --> ZCT/SCT probabilities will not be calculated!\n"
     return string
 #---------------------------------------------------------------#
-def ssct_probs(E_list,probs_ZCT,probs_SCT,rpoints_SCT):
+def ssct_probs(E_list,probs_ZCT,probs_SCT,rpoints_SCT,sbw,sfw):
     string = ""
     # Get P(E) for all these energies
     head1 = " E [kcal/mol]  |  P^ZCT(E)  |  P^SCT(E)  |  Classical turning "
@@ -769,6 +769,7 @@ def ssct_probs(E_list,probs_ZCT,probs_SCT,rpoints_SCT):
     string += "  "+head1+"\n"
     string += "  "+head2+"\n"
     string += "  "+divi+"\n"
+    write_message = False
     for idx in range(len(E_list)):
         E           = "%10.4f"%(E_list[idx]*KCALMOL)
         pE_ZCT      = "%10.3e"%(probs_ZCT[idx])
@@ -779,13 +780,34 @@ def ssct_probs(E_list,probs_ZCT,probs_SCT,rpoints_SCT):
         for idx,(start,end) in enumerate(rpoints):
             rp_string += "[%+.3f,%+.3f]U"%(start,end)
             if (idx+1)%2==0 and idx+1 != len(rpoints): rp_string+= "\n"+" "*46
-        string += "     %s  | %s | %s |  %s\n"%(E,pE_ZCT,pE_SCT,rp_string[:-1])
+        # are probabilities converged?
+        try:
+            sbw1  = rpoints[ 0][0]
+            sfw1  = rpoints[-1][1]
+            bool1 = abs(sbw1-sbw) < EPS_MEPS
+            bool2 = abs(sfw1-sfw) < EPS_MEPS
+            if bool1 and bool2: endline = "B"
+            elif bool1        : endline = "L"
+            elif bool2        : endline = "B"
+            else              : endline = ""
+        except: endline = ""
+        if endline != "": write_message = True
+        # add to string
+        string += "     %s  | %s | %s |  %s  %s\n"%(E,pE_ZCT,pE_SCT,rp_string[:-1],endline)
     string += "  "+divi+"\n"
-   #string += "   Note: Sometimes, the value of V at a given s may be greater than E.  \n"
-   #string += "         In such cases, a letter may be found next to the interval.     \n"
-   #string += "           * an 'L' indicates that this happens at the left-side of s.  \n"
-   #string += "           * an 'R' indicates that this happens at the right-side of s. \n"
-   #string += "           * an 'B' indicates that this happens at both sides.          \n"
+    string += "   Number of tunneling energies: %i\n"%len(E_list)
+
+    if write_message:
+       string += "\n"
+       string += "   WARNING! Some tunneling probabilities are not converged:\n"
+       string += "     * 'L' --> at the left-side of VaG(s).\n"
+       string += "     * 'R' --> at the right-side of VaG(s).\n"
+       string += "     * 'B' --> at both sides of VaG(s).\n"
+       string += "   This fact may lack of importance if the temperature\n"
+       string += "   is high enough so these probabilities do not play\n"
+       string += "   any role.\n"
+       #string += "   When the MEP is not complete, the value of VaG(s)\n"
+       #string += "   may be greater than E.\n"
     return string
 #---------------------------------------------------------------#
 def ssct_diffs(lE_SCT,diffs_SCT):
@@ -808,7 +830,46 @@ def ssct_diffs(lE_SCT,diffs_SCT):
        string += "\n"
     return string
 #---------------------------------------------------------------#
-def ssct_kappa(temps,KAPPA,lIi,RTE,E0,case="sct"):
+def ssct_qrc(pathvars):
+    string  = "Quantum reaction coordinate keyword (qrc) activated!\n"
+    string += "\n"
+
+    # Any error?
+    qrccase = pathvars._qrccase
+    error1 = "No reaction related to the transition state!"
+    error2 = "The reaction is not unimolecular!"
+    error3 = "Reactant is not defined!"
+    error4 = "The reactant gts file was not found"
+    error5 = "Unable to get product(s) energy!"
+    if qrccase == 1: string += "   * ERROR: %s\n"%error1; return string
+    if qrccase == 2: string += "   * ERROR: %s\n"%error2; return string
+    if qrccase == 3: string += "   * ERROR: %s\n"%error3; return string
+    if qrccase == 4: string += "   * ERROR: %s\n"%error4; return string
+    if qrccase == 5: string += "   * ERROR: %s\n"%error5; return string
+
+    # Print reaction and reactant information
+    reaction   = pathvars._reaction
+    reactioneq = pathvars._reactioneq
+    qrcname    = pathvars._qrcname
+    mode       = pathvars._qrc[0]+1
+    afreq_cm   = fncs.afreq2cm(pathvars._qrcafreq)
+    numst      = pathvars._qrc[1]
+
+    string += "   * reaction name & eq  : %s (%s)\n"%(reaction,reactioneq)
+    if not pathvars._exorgic:
+        string += "     WARNING!\n"
+        string += "     QRC must be used in exoergic direction!\n"
+        string += "     Reaction will be reversed for QRC calculation!\n"
+    string += "   * reactant name       : %s\n"%qrcname
+    string += "   * reactant vib. freq. : %i (%.2f cm^-1)\n"%(mode,afreq_cm)
+    string += "   * number of states    : %i\n"%numst
+    string += "   * contribution to Kappa^SAG from E0 to VAG will\n"
+    string += "     be obtained from discrete set of energies\n"
+    string += "\n"
+    string += "   * calculating transmission probabilities...\n"
+    return string
+#---------------------------------------------------------------#
+def ssct_kappa(temps,KAPPA,lIi,RTE,E0,bqrc,case="sct"):
     string  = "%s transmission coefficient:\n"%(case.upper())
     string += "----------------------------------------------------\n"
     string += "   T (K)   |  %%I1   |  %%I2   |  Kappa^%3s  |   RTE   \n"%(case.upper())
@@ -819,14 +880,16 @@ def ssct_kappa(temps,KAPPA,lIi,RTE,E0,case="sct"):
         I1 *= 100./kappa
         I2 *= 100./kappa
         I3 *= 100./kappa
-        string += " %9.2f | %6.2f | %6.2f | %11s | %7.3f"%(T,I1,I2+I3,fncs.eformat(kappa,3),rte)
-       #string += " %9.2f | %6.2f | %6.2f | %11.4E | %7.3f"%(T,I1,I2+I3,kappa,rte)
-        if (rte-E0*KCALMOL) < 1.5: string += " <-- RTE close to E0"
+        string += " %9.2f | %6.2f | %6.2f | %11s | %7.3f "%(T,I1,I2+I3,fncs.eformat(kappa,3),rte)
+        if bqrc[idx]             : string += "++ "
+        if (rte-E0*KCALMOL) < 1.5: string += "** "
         string += "\n"
     string += "----------------------------------------------------\n"
     string += " RTE: Representative Tunneling Energy (in kcal/mol)           \n"
     string += " %I1: contribution of tunneling\n"
     string += " %I2: contribution of non-classical reflection\n"
+    string += " ++ : indicates that QRC was used at the given temperature\n"
+    string += " ** : indicates that RTE is close to E0 (less than 1.5 kcal/mol)\n"
     return string
 #---------------------------------------------------------------#
 def ssct_onlykappa(temps,kappa_ZCT,kappa_SCT):

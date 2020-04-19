@@ -1,13 +1,13 @@
  -------------------------------------------------------------
-  Program version: Pilgrim v2020.1 (2020-03-01)
+  Program version: Pilgrim v2020.2 (2020-04-18)
  -------------------------------------------------------------
                                                             
           A Thermal Rate Constant Calculator and            
               Kinetics Monte Carlo Simulator                
                                                             
  -------------------------------------------------------------
-  Current date (YY-MM-DD)   : 2020-03-13
-  Current time (HH:MM:SS)   : 09:27:12
+  Current date (YY-MM-DD)   : 2020-04-19
+  Current time (HH:MM:SS)   : 14:22:51
   Python interpreter version: 3.6.9
  -------------------------------------------------------------
 
@@ -62,8 +62,8 @@
      -------------------------
      
          Anharmonic factors found for:
-         * EtOH_iso3
          * TSB_iso3
+         * EtOH_iso3
      
          Anharmonic corrections will be calculated for:
          * for equilibrium constant    : ANHC(Keq)
@@ -630,7 +630,7 @@
 
 
                                                             ----------------------------
-                                                            | Current date: 2020-03-13 |
-                                                            | Current time:   09:27:14 |
-                                                            | Elapsed time:   1.5 secs |
+                                                            | Current date: 2020-04-19 |
+                                                            | Current time:   14:22:54 |
+                                                            | Elapsed time:   2.8 secs |
                                                             ----------------------------

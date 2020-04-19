@@ -5,7 +5,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -33,7 +33,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 *----------------------------------*
 | Module     :  common             |
 | Sub-module :  criteria           |
-| Last Update:  2020/02/03 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 '''
@@ -79,6 +79,9 @@ EPS_FSTRICT = 1e-10
 
 # comparision of temperatures
 EPS_TEMP = 1e-8
+
+# Small energy difference in kcalmol
+EPS_KCALMOL = 0.01
 
 # zero por single-value decomposition
 EPS_SVD = 1e-9

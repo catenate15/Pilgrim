@@ -3,9 +3,9 @@
 ## About _Pilgrim_
 
     Name of the Program: Pilgrim
-    Program Version : 2020.1
-    Program Version Date: March 01, 2020
-    Manual  Version Date: March 01, 2020
+    Program Version : 2020.2
+    Program Version Date: April 18, 2020
+    Manual  Version Date: April 18, 2020
 
 _Pilgrim_ is an user-friendly program written in Python 3.
 It was designed to use direct-dynamics to calculate thermal rate constants of 
@@ -41,14 +41,14 @@ of each chemical species with time, as well as providing its chemical yield.
 
 ## How to cite
 
-D. Ferro-Costas, D. G. Truhlar, A. Fernández-Ramos, Pilgrim - version 2020.1
+D. Ferro-Costas, D. G. Truhlar, A. Fernández-Ramos, Pilgrim - version 2020.2
 (University of Minneapolis, Minnesota, MN, and Universidade de Santiago
 de Compostela, Spain, 2020). https://github.com/cathedralpkg/Pilgrim
 
 
 ## Licensing and Distribution 
 
-_Pilgrim version 2020.1_
+_Pilgrim version 2020.2_
 
 MIT LICENSE
 

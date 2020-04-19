@@ -1,13 +1,13 @@
  -------------------------------------------------------------
-  Program version: Pilgrim v2020.1 (2020-03-01)
+  Program version: Pilgrim v2020.2 (2020-04-18)
  -------------------------------------------------------------
                                                             
           A Thermal Rate Constant Calculator and            
               Kinetics Monte Carlo Simulator                
                                                             
  -------------------------------------------------------------
-  Current date (YY-MM-DD)   : 2020-03-12
-  Current time (HH:MM:SS)   : 10:00:10
+  Current date (YY-MM-DD)   : 2020-04-19
+  Current time (HH:MM:SS)   : 14:02:24
   Python interpreter version: 3.6.9
  -------------------------------------------------------------
 
@@ -392,7 +392,7 @@
        
        
                                                             -----------------------------
-                                                            | Current date:  2020-03-12 |
-                                                            | Current time:    10:00:10 |
-                                                            | Elapsed time: 651.5 msecs |
+                                                            | Current date:  2020-04-19 |
+                                                            | Current time:    14:02:25 |
+                                                            | Elapsed time: 918.5 msecs |
                                                             -----------------------------

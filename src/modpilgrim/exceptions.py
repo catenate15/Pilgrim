@@ -4,7 +4,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -32,7 +32,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 *----------------------------------*
 | Module     :  modpilgrim         |
 | Sub-module :  exceptions         |
-| Last Update:  2020/03/01 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 '''
@@ -106,8 +106,9 @@ def deal_with_exception(exception):
          serr += "  WARNING: transition state not found in rst file!\n"
     elif exctype == Exc.OnlyMEP:
          serr += "  WARNING: This transition state is not defined in a reaction\n"
-         serr += "           and/or the --pfn option was not run. Therefore,\n"
-         serr += "           TST correction coefficients will not be calculated!\n"
+         serr += "           and/or the reaction reactant is incorrectly defined \n"
+         serr += "           and/or the --pfn option was not run.\n"
+         serr += "           Therefore, TST correction coefficients will not be calculated!\n"
     elif exctype == Exc.FileIsNotGTS:
          serr += "  WARNING: it seems that %s is not a gts file\n"%exception._var
     elif exctype == Exc.WrongONIOMlayers:

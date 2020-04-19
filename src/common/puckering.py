@@ -5,7 +5,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -41,7 +41,7 @@ This module contains different functions
 related to puckering coordinates
 '''
 
-import common.numpy as np
+import numpy        as np
 import common.fncs  as fncs
 import common.dicts as dd
 
@@ -91,8 +91,8 @@ def puckering_coords(xvec,atoms_in_ring=None):
     normal      = puckering_normal(list_Rj)
     list_zj     = puckering_zjs(list_Rj,normal)
     N = len(list_zj)
-    if N%2 != 0: mmax = (N-1)/2
-    else       : mmax = N/2 -1
+    if N%2 != 0: mmax = (N-1)//2
+    else       : mmax = N//2 -1
     list_qm   = []
     list_phim = []
     for m in range(2,mmax+1,1):

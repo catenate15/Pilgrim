@@ -5,7 +5,7 @@
 ---------------------------
 
 Program name: Pilgrim
-Version     : 2020.1
+Version     : 2020.2
 License     : MIT/x11
 
 Copyright (c) 2020, David Ferro Costas (david.ferro@usc.es) and
@@ -33,7 +33,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 *----------------------------------*
 | Module     :  common             |
 | Sub-module :  sct                |
-| Last Update:  2020/02/24 (Y/M/D) |
+| Last Update:  2020/04/18 (Y/M/D) |
 | Main Author:  David Ferro-Costas |
 *----------------------------------*
 
@@ -497,15 +497,17 @@ def get_sct_part4(svals,lmueff,VadiSpl,E0):
     # return data
     return weights, E_list, probs, rpoints, diffs, (prob0,rps0)
 #-----------------------------------------------#
-def get_sct_part5(E_list,probs,weights,E0,VAG,temps,discrete=None):
+def get_sct_part5(E_list,probs,weights,E0,VAG,temps,discrete=None,qrc_Elim=None):
     '''
     calculates the correction factor
     discrete = a list with the values for I1
     '''
+    if qrc_Elim is None: qrc_Elim = float("inf")
     lCOEFs  = []
     lRTEs   = []
     lINTGR  = []
     lIi     = []
+    bqrc = [False for T in temps]
     for idx,T in enumerate(temps):
        beta = 1.0 / (pc.KB*T)
        # case (a) E0 < VAG
@@ -513,21 +515,22 @@ def get_sct_part5(E_list,probs,weights,E0,VAG,temps,discrete=None):
           # Integral I1 (from E0 to VAG)
           I1, INTGRND1Y = kappa_integral1(E_list,probs,weights,beta,VAG)
           INTGRND1X = E_list
-          # If qrc --> overwrite value
-          if discrete is not None:
-            I1 = discrete[idx]
           # Integral I2 (from VAG to 2VAG-E0)
           I2, INTGRND2X, INTGRND2Y = kappa_integral2(E_list,probs,weights,beta,VAG)
           # Integral I3 (from 2VAG-E0 to infty)
           I3 = kappa_integral3(E0,VAG,beta)
-          # Tunneling coefficient
-          COEF = I1+I2+I3
           # Get representative Tunneling Energy
           INTGRNDX = INTGRND1X+INTGRND2X
           INTGRNDY = INTGRND1Y+INTGRND2Y
           spl = Spline(INTGRNDX,INTGRNDY)
           spl.find_xtr("max")
           RTE, dummy = spl.get_max()
+          # If qrc --> overwrite value
+          if discrete is not None and RTE < qrc_Elim:
+             I1 = discrete[idx]
+             bqrc[idx] = True
+          # Tunneling coefficient
+          COEF = I1+I2+I3
        # case (b) E0 >= VAG 
        else:
           COEF     = 1.0
@@ -540,7 +543,7 @@ def get_sct_part5(E_list,probs,weights,E0,VAG,temps,discrete=None):
        lIi.append( (I1,I2,I3) )
        lRTEs.append(RTE)
        lINTGR.append((INTGRNDX,INTGRNDY))
-    return lCOEFs, lIi, lRTEs, lINTGR
+    return lCOEFs, lIi, lRTEs, lINTGR, bqrc
 #===============================================#
 def get_sct(dMols,points,VadiSpl,temps,dv1={}):
     pass
