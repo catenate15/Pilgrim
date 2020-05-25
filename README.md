@@ -138,30 +138,21 @@ where, again, the path to the Orca executable is between quotation marks.
 
 You can run _Pilgrim_ by invoking the Python interpreter manually as follows:
 
-```python3.6 pilgrim.py```
+```python3 pilgrim.py```
 
 If you prefer to avoid invoking the Python interpreter, you have to follow these two simple steps:
 
-Add as the first line in the pilgrim.py file the following:
+  - Add as the first line in the pilgrim.py file the following:
+    ```#!PATH_FOR_PYTHON python```
+    where PATH_FOR_PYTHON indicates the location of the Python interpreter.
+    Example:
+    ```#!/usr/bin/python3```
+    In this example Python is located in `/usr/bin/`.
 
-```#!PATH_FOR_PYTHON python```
-
-where PATH_FOR_PYTHON indicates the location of the Python interpreter.
-
-Example:
-
-```#!/usr/bin/python3.6```
-
-
-In this example Python is located in `/usr/bin/`.
-
-Make the main program pilgrim.py executable:
-
-```chmod u+x pilgrim.py```
-
-This allows you to run _Pilgrim_ just using:
-
-```pilgrim.py```
+  - Make the main program pilgrim.py executable:
+    ```chmod u+x pilgrim.py```
+    This allows you to run _Pilgrim_ just using:
+    ```pilgrim.py```
 
 Before run _Pilgrim_, we recommend to read the help menu. It can be displayed either by typing
 

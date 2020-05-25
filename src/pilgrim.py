@@ -1,4 +1,4 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python3
 '''
 ---------------------------
  Licensing and Distribution
@@ -41,11 +41,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 #===========================================================#
 # FIRSTLY: check modules!!!                                 #
 #-----------------------------------------------------------#
+import sys                                                  #
+if sys.version_info.major < 3: exit("Python 3 required!!")  #
 import modpilgrim.checkmods   as     checkmods              #
 checkmods.checkmods()                                       #
 #-----------------------------------------------------------#
 import os                                                   #
-import sys                                                  #
 import time                                                 #
 #-----------------------------------------------------------#
 from modpilgrim.strings import PROGNAME, VERSION, PROGHEAD, AUTHORINFO
