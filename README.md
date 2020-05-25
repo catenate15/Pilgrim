@@ -161,7 +161,7 @@ If you prefer to avoid invoking the Python interpreter, you have to follow these
 
     ```pilgrim.py```
 
-Before run _Pilgrim_, we recommend to read the help menu. It can be displayed either by typing
+Before running _Pilgrim_, we recommend to read the help menu. It can be displayed either by typing
 
 ```pilgrim.py --help```
 
